@@ -15,7 +15,6 @@ const webpackClientAssets = require('../dist/webpack-client-assets.json');
 export default (pathUrl,props)=>{
 
 	var appStore = InjectStorerManager.createStore(props || {});
-//	updateLocation(appStore)(pathUrl); //location change
 
 	var content = ReactDOMServer.renderToString(
 		<StaticRouter location={pathUrl} context={{}}>

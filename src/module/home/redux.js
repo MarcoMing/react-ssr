@@ -1,27 +1,24 @@
 
-//import { InjectStorerManager } from 'src/appStore';
-//
-// console.log(require('src/appStore'));
-
-const { InjectStorerManager } = require('src/appStore');
-
-console.log('InjectStorerManager',InjectStorerManager);
-//const store = InjectStorerManager.getStore();
-
-//console.log('store',store)
-
-export const actionCreators = {
-
+export function actionCreators(){
+  return (dispatch) => {
+    return {
+      // dispatching plain actions
+      increment: () => dispatch({ type: 'INCREMENT' }),
+      decrement: () => dispatch({ type: 'DECREMENT' }),
+      reset: () => dispatch({ type: 'RESET' })
+    }
+  }
 }
 
 
-export function counterReducer(state = 0, action) {
+export function counterReducer(state = {}, action) {
+  //console.log('state',state);
   switch (action.type) {
     case 'INCREMENT':
-      return state + 1
+      return { ...state, count: state.count + 1 }
     case 'DECREMENT':
-      return state - 1
+      return { ...state, count: state.count - 1 }
     default:
-      return state
+      return {...state}
   }
 }

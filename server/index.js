@@ -37,6 +37,7 @@ app.get("*", (req, res, next) => {
     //console.log('data',data && data.data);
     const props = {
       home: {
+        count: 10,
         dataSource: data && data.data
       }
     };
