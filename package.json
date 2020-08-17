@@ -12,7 +12,7 @@
     "build-prod": "cross-env NODE_ENV=production node build.js",
     "webpack:client": "webpack --config webpack.config.client.js --watch",
     "webpack:server": "webpack --config webpack.config.server.js --watch",
-    "node:start": "nodemon ./server/index.js --exec babel-node --presets @babel/preset-env @babel/preset-react",
+    "node:start": "nodemon --exec babel-node ./server/index.js",
     "server": "npm-run-all --parallel webpack:* node:start"
   },
   "dependencies": {

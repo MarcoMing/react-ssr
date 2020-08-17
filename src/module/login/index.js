@@ -26,6 +26,7 @@ class Login extends React.Component {
 }
 
 function mapStateToProps(state){
+  console.log('login state',state);
   return {
   }
 }

@@ -1,18 +1,19 @@
-const path = require('path');
-const fs = require('fs');
 import React from 'react';
 import ReactDOM from 'react-dom';
 import ReactDOMServer from 'react-dom/server';
-import { StaticRouter } from "react-router-dom";
+import { StaticRouter,matchPath } from "react-router-dom";
+
+import 'ignore-styles';
 
 import { InjectStorerManager } from 'src/appStore';
-
 import App from 'src/components/App';
+
+import { routes } from 'src/routes';
 
 const webpackClientAssets = require('../dist/webpack-client-assets.json');
 //console.log('webpackClientAssets',webpackClientAssets);
 
-export default (pathUrl,props)=>{
+export function renderHtml(pathUrl,props){
 
 	var appStore = InjectStorerManager.createStore(props || {});
 
@@ -48,4 +49,35 @@ export default (pathUrl,props)=>{
 	);
 
 	return html;
+
+}
+
+export default (req, res, next)=>{
+
+	const pathUrl = req.path;
+  console.log('req.path',req.path)
+
+  const activeRoute = routes.find(
+    (route) => matchPath(pathUrl, route)
+  ) || {}
+
+  if(!activeRoute.path) res.end('404 not found');
+
+	const promise = activeRoute.fetchInitialData
+    ? activeRoute.fetchInitialData(req.path)
+    : Promise.resolve()
+
+  promise.then((data)=>{
+
+    //console.log('data',data && data.data);
+    const props = {
+      home: {
+        count: 10,
+        dataSource: data && data.data
+      }
+    };
+    const html = renderHtml(pathUrl,props);
+    res.end(html);
+  })
+
 }

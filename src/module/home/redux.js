@@ -1,4 +1,8 @@
 
+import { InjectStorerManager } from 'src/appStore';
+
+console.log('InjectStorerManager',InjectStorerManager);
+
 export function actionCreators(){
   return (dispatch) => {
     return {
