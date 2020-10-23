@@ -8,7 +8,7 @@ const middlewares = [
 
 ]
 
-export let InjectStorerManager = {
+export const InjectStorerManager = {
   store: null,
   injectStore: function(store){
     this.store = store;

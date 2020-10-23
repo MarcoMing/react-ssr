@@ -17,7 +17,6 @@ function buildClientAssets(){
   });
 }
 
-
 function buildServerAssets(){
   const complier = webpack(serverConfigs,function(err){
     if(err){

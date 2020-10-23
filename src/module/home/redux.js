@@ -1,7 +1,10 @@
 
-import { InjectStorerManager } from 'src/appStore';
+//import { InjectStorerManager } from 'src/appStore';
 
-console.log('InjectStorerManager',InjectStorerManager);
+//const InjectStorerManager = require('src/appStore');
+
+import http from 'utils/http';
+
 
 export function actionCreators(){
   return (dispatch) => {
@@ -9,7 +12,13 @@ export function actionCreators(){
       // dispatching plain actions
       increment: () => dispatch({ type: 'INCREMENT' }),
       decrement: () => dispatch({ type: 'DECREMENT' }),
-      reset: () => dispatch({ type: 'RESET' })
+      reset: () => dispatch({ type: 'RESET' }),
+      getUser: () => {
+        return http.get('https://api.github.com/rate_limit')
+                .then((result)=>{
+                   dispatch({type: 'GITHUB_USER',user: result.data })
+                })
+      }
     }
   }
 }
@@ -22,6 +31,9 @@ export function counterReducer(state = {}, action) {
       return { ...state, count: state.count + 1 }
     case 'DECREMENT':
       return { ...state, count: state.count - 1 }
+    case 'GITHUB_USER':
+      return { ...state, user: action.user }
+      break;
     default:
       return {...state}
   }

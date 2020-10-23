@@ -56,12 +56,12 @@ const baseConfigs = {
        ]
       },
       {
-        test: /\.png$/,
+        test: /\.(png|jpg|gif)$/i,
         use: [
           {
             loader: 'url-loader',
             options: {
-              mimetype: 'image/png'
+              limit: 8192,
             }
           }
         ]

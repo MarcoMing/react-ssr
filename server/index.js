@@ -4,17 +4,19 @@ import path from "path"
 import cors from "cors"
 
 const port = 8001;
+
+
+//global.window = {};
+
+
 const page = require('../dist/page.generator.js').page.default;
 
 const app = express();
 app.use(cors());
 app.use(express.static(path.join(__dirname, '..', './dist')));
 
-
 app.get("*", (req, res, next) => {
-
   page(req, res, next);
-
 })
 
 app.listen(port, function() {
