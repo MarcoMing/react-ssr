@@ -7,7 +7,6 @@
   "author": "",
   "license": "ISC",
   "scripts": {
-    "clean": "rm ./dist/*",
     "build-dev": "cross-env NODE_ENV=development node build.js",
     "build-prod": "cross-env NODE_ENV=production node build.js",
     "webpack:client": "webpack --config webpack.config.client.js --watch",

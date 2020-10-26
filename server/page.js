@@ -56,7 +56,7 @@ export default(req, res, next) => {
   //console.log('req.path', req.path)
   const activeRoute = routes.find((route) => matchPath(pathUrl, route)) || {}
 
-  console.log('activeRoute',activeRoute);
+  //console.log('activeRoute',activeRoute);
 
   if (!activeRoute.path)
     res.end('404 not found');
@@ -66,7 +66,6 @@ export default(req, res, next) => {
     : Promise.resolve()
 
   promise.then((props) => {
-    console.log('propspropsprops',props);
     const _props = {
       //common: {}
       ...props

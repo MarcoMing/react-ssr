@@ -11,34 +11,38 @@ class Home extends React.PureComponent {
 
   constructor(props){
     super(props);
-
-    console.log(this);
+    console.log('constructor');
     this.state = {
+      test: 1
     }
   }
 
-  //componentWillMount、componentWillReceiveProps、componentWillUpdate
+  //componentWillMount、componentWillReceiveProps
   static getDerivedStateFromProps(nextProps, prevState) {
-    console.log('nextPropsnextPropsnextProps',nextProps);
+    console.log('getDerivedStateFromProps');
     return null
   }
 
   shouldComponentUpdate(nextProps, nextState){
+    console.log('shouldComponentUpdate');
     return true
   }
 
   getSnapshotBeforeUpdate(prevProps, prevState){
-
+    console.log('getSnapshotBeforeUpdate');
   }
 
-  componentDidUpdate(){}
+  componentDidUpdate(){
+    console.log('componentDidUpdate');
+  }
 
   componentDidMount(){
-    console.log('did mount');
-    this.props.getUser()
+    console.log('componentDidMount');
+    //this.props.getUser()
   }
 
   render() {
+    console.log('render');
     const { dataSource ,count, user} = this.props;
     return (
       <>
